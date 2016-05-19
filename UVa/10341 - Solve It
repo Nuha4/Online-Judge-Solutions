@@ -1,0 +1,47 @@
+#include<iostream>
+#include<cstdio>
+#include<cmath>
+using namespace std;
+
+const double eps  = 1e-9;
+const double eps2 = 1e-12;
+double p, q, r, s, t , u;
+
+double f(double x)
+{
+    return p*exp(-x) + q*sin(x) + r*cos(x) + s*tan(x) + t*x*x + u;
+}
+bool flag;
+double solve()
+{
+    double lo=0., hi=1. , mid;
+    int it=100;
+    if( f(lo)*f(hi)>eps ) {flag = true;return 0;}
+
+    while(it--)
+    {
+        mid = (lo+hi)/2.;
+        int sa,sb;
+        if( f(lo) < -eps ) sa = -1;
+        else sa = 1;
+        if( f(mid) < -eps ) sb = -1;
+        else sb = 1;
+
+        if( sa * sb < 0 )
+            hi = mid;
+        else lo = mid;
+    }
+    return mid;
+}
+int main()
+{
+    //freopen("in.txt", "r", stdin);
+    while(scanf("%lf %lf %lf %lf %lf %lf", &p, &q, &r, &s, &t, &u)!=EOF)
+    {
+        flag= false;
+        double n = solve();
+        if(flag) printf("No solution\n");
+        else printf("%.4lf\n", n);
+    }
+    return 0;
+}
