@@ -1,0 +1,90 @@
+#include<iostream>
+#include<cstdio>
+#include<cmath>
+#include<algorithm>
+#include<vector>
+using namespace std;
+#define sc(n) scanf("%d", &n)
+#define sf scanf
+#define pf printf
+#define MX 100005
+typedef long long ll;
+float arr[10];
+
+bool check(float a, float b, float c, float d)
+{
+    arr[0] = a, arr[1] = b, arr[2]= c, arr[3] = d;
+    sort(arr, arr+4);
+    a = arr[0], b = arr[1], c = arr[2], d = arr[3];
+
+    float am, median, range;
+    am = (a+b+c+d)/4;
+    median = (b+c)/2;
+    range = d-a;
+
+    if(am==median && median==range)
+        return true;
+    else
+        return false;
+}
+
+int main()
+{
+    //freopen("in.txt","r",stdin);
+    int n, i, j, k, lost, flag=0;
+    float x1, x2, x3, x4;
+    cin >> n;
+    lost = 4-n;
+    if(lost==0)
+    {
+        cin >> x1 >> x2 >> x3 >> x4;
+        if(check(x1, x2, x3, x4))
+            cout << "YES" << endl;
+        else
+            cout << "NO" << endl;
+    }
+    else if(lost==1)
+    {
+        cin >> x1 >> x2 >> x3;
+        for(i=1; i<=1500; i++)
+        {
+            if(check(x1, x2, x3, i))
+               x4 = i, flag=1;
+        }
+        if(flag==1)
+            cout << "YES" << endl <<  x4 << endl;
+        else
+            cout << "NO" << endl;
+    }
+    else if(lost==2)
+    {
+        cin >> x1 >> x2;
+        for(i=1; i<=1500; i++)
+        {
+            for(j=1; j<=1500; j++)
+            {
+                if(check(x1, x2, i, j))
+                    x3 =i , x4 = j, flag=1; continue;
+            }
+        }
+        if(flag==1)
+            cout << "YES" << endl << x3 << endl << x4 << endl;
+        else
+            cout << "NO" << endl;
+    }
+    else if(lost==3)
+    {
+        cin >> x1;
+        x2 = x1, x3 =3*x1 , x4 = x3;
+        if(check(x1, x2, x3, x4))
+            cout << "YES" << endl << x2 << endl << x3 << endl << x4 << endl;
+        else
+            cout << "NO" << endl;
+    }
+    else if(lost==4)
+    {
+        cout << "YES" << endl << "1" << endl << "1" << endl;
+        cout << "3" << endl << "3" << endl;
+    }
+    return 0;
+}
