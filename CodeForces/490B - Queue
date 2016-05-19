@@ -1,0 +1,70 @@
+#include<iostream>
+#include<cstdio>
+#include<cmath>
+#include<algorithm>
+#include<vector>
+#include<fstream>
+#include<map>
+using namespace std;
+#define sc(n) scanf("%d", &n)
+#define sf scanf
+#define pf printf
+#define MX 100005
+#define pb push_back
+#define ff first
+#define ss second
+
+typedef long long ll;
+int freq[1000005];
+int arr[200005];
+
+vector < pair<int, int> > VP;
+map<int , int> mp;
+
+int main()
+{
+    //freopen("in4.txt","r",stdin);
+    int i, j, a, b, n;
+    int check, check2, inEven=2, inOdd=1;
+    cin >> n;
+   
+    for(i=0; i<n; i++)
+    {
+        cin >> a >> b;
+        VP.pb( make_pair(a, b));
+        mp[a] = b;
+        freq[VP[i].ff]++;
+        freq[VP[i].ss]++;
+        if(VP[i].ff==0)
+        {
+            check = VP[i].ss;
+            arr[inEven] = check;
+            inEven+=2;
+        }
+    }
+   
+    for(int i=0; i<n; i++)
+    {
+      if(freq[VP[i].ff]==1)
+      {
+          check2 =  VP[i].ff;
+          arr[inOdd] = check2;
+          inOdd+=2;
+      }
+    }
+   
+    for(int i=0; i<=(n/2); i++)
+    {
+        arr[inEven] = mp[check] ;
+        check = arr[inEven];
+            inEven+=2;
+        arr[inOdd] = mp[check2];
+        check2 = arr[inOdd] ;
+            inOdd+=2;
+    }
+   
+    for(int i=1; i<=n; i++)
+        cout << arr[i] << " " ;
+
+    return 0;
+}
