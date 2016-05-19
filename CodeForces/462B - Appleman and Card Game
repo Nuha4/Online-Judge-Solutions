@@ -1,0 +1,52 @@
+#include<iostream>
+#include<cstdio>
+#include<cmath>
+#include<algorithm>
+#include<vector>
+#include<cstring>
+using namespace std;
+#define sc(n) scanf("%d", &n)
+#define sf scanf
+#define pf printf
+#define MX 100005
+typedef long long ll;
+int f[MX];
+
+int main()
+{
+    string s;
+    int n, k;
+    while(scanf("%d%d", &n, &k)==2)
+    {
+        cin >> s;
+
+        memset(f, 0, sizeof(f));
+        for(int i=0; i<n; i++)
+            f[s[i]-'A']++;
+
+        sort(f, f+26);
+        reverse(f, f+26);
+        ll sum =0;
+        for(int i=0; i<26; i++)
+        {
+            if(f[i]==0)
+                break;
+            if(k==0)
+                break;
+            if(f[i]>=k)
+            {
+                ll tmp = k;
+                sum+=(tmp*tmp);
+                break;
+            }
+            else
+            {
+                ll tmp = f[i];
+                sum+=(tmp*tmp);
+                k-=f[i];
+            }
+        }
+        cout << sum << endl;
+    }
+    return 0;
+}
