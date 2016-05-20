@@ -1,0 +1,33 @@
+#include<iostream>
+#include<cstdio>
+#include<cmath>
+#include<cstring>
+#include<algorithm>
+#include<vector>
+#include<map>
+using namespace std;
+#define pf printf
+#define sf scanf
+#define loop(i, n) for(i=0; i<(n); i++)
+#define MAX 100
+
+int main()
+{
+    int test, t;
+    int m, l, ans;
+    sf("%d", &test);
+    for(t=1; t<=test; t++)
+    {
+        sf("%d %d", &m, &l);
+        if(m==l)
+        {
+            ans = (m*4)+19;
+        }
+        else
+        {
+            ans = (abs(l-m)*4)+(m*4)+19;
+        }
+        pf("Case %d: %d\n", t, ans);
+    }
+    return 0;
+}
