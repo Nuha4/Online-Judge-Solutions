@@ -1,0 +1,45 @@
+#include<iostream>
+#include<cstdio>
+#include<cmath>
+#include<cstring>
+#include<algorithm>
+using namespace std;
+#define pf printf
+#define sf scanf
+#define MAX 105
+char a[MAX][MAX];
+int main()
+{
+    int i , j, n, temp=0, mid=0;
+    memset(a, '*', sizeof(a));
+    sf("%d", &n);
+    mid = (n-1)/2;
+    for(i=0; i<=n; i++)
+    {
+        for(j=mid; j<=mid+i; j++)
+        {
+            a[i][j] = 'D';
+        }
+        for(j=mid; j>=mid-i; j--)
+        {
+            a[i][j] = 'D';
+        }
+    }
+    for(i=0; i<=mid; i++)
+    {
+        for(j=0; j<n; j++)
+        {
+            cout << a[i][j];
+        }
+        cout << endl;
+    }
+    for(i=mid-1; i>=0; i--)
+    {
+        for(j=0; j<n; j++)
+        {
+            cout << a[i][j];
+        }
+        cout << endl;
+    }
+    return 0;
+}
