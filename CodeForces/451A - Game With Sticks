@@ -1,0 +1,29 @@
+#include<iostream>
+#include<cstdio>
+#include<cmath>
+#include<cstring>
+#include<algorithm>
+using namespace std;
+#define pf printf
+#define sf scanf
+#define loop(i, n) for(i=0; i<n; i++)
+#define MAX 100
+
+int min(int n, int m)
+{
+    if(n>m)
+        return m;
+    else
+        return n;
+}
+int main()
+{
+    int n, m;
+    cin >> n >> m;
+    int temp = min(n, m);
+    if(temp & 1)
+       cout << "Akshat" << endl;
+    else
+       cout << "Malvika" << endl;
+    return 0;
+}
