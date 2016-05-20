@@ -1,0 +1,33 @@
+#include<iostream>
+#include<cstdio>
+#include<cmath>
+#include<cstring>
+#include<algorithm>
+#include<vector>
+#include<map>
+using namespace std;
+#define pf printf
+#define sf scanf
+#define loop(i, n) for(i=0; i<(n); i++)
+#define MAX 100
+
+int main()
+{
+    int test, t;
+    int n, st, sum;
+    sf("%d", &test);
+    for(t=1; t<=test; t++)
+    {
+        sf("%d", &n);
+        sum=0;
+        while(n--)
+        {
+            sf("%d", &st);
+            if(st<=0)
+                continue;
+            sum+=st;
+        }
+        pf("Case %d: %d\n", t, sum);
+    }
+    return 0;
+}
