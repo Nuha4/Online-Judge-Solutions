@@ -1,0 +1,71 @@
+#include<iostream>
+#include<cstdio>
+#include<cmath>
+#include<queue>
+#include<cstring>
+using namespace std;
+typedef pair<int,int> pii;
+#define pf printf
+#define sf scanf
+#define MAX 1000
+ 
+char grid[50][50];
+bool vis[50][50];
+queue <pii> Q;
+int r , c;
+int dx[] = {0, 0, -1, 1};
+int dy[] = {-1, 1, 0, 0};
+ 
+bool valid(int x,int y)
+{
+    return x>=0 && y>=0 && x<r && y<c && (grid[x][y]=='.');
+}
+int bfs(int x, int y)
+{
+    int ux, uy, vx, vy, cnt=0;
+    memset(vis, 0, sizeof(vis));
+    while(!Q.empty()) Q.pop(); //queue clear
+ 
+    vis[x][y] =  true;
+    Q.push(pii(x,y));
+ 
+    while(!Q.empty())
+    {
+        pii u = Q.front(); Q.pop();
+        ux = u.first; uy = u.second;
+        for(int i=0; i<4 ;i++)
+        {
+            vx = ux + dx[i];
+            vy = uy + dy[i];
+            if(!valid(vx, vy)) continue;
+            if(vis[vx][vy]) continue;
+            cnt++;
+            vis[vx][vy] = true;
+            Q.push(make_pair(vx, vy));
+        }
+    }
+    return cnt;
+}
+int main()
+{
+    //freopen("in.txt", "r", stdin);
+    int sr, sc, kase=0;
+    int test, t;
+    int i, j;
+    sf("%d", &test);
+    while(test--)
+    {
+        sf("%d%d", &c, &r);
+        for(i=0; i<r; i++)
+            sf("%s", grid[i]);
+ 
+        for(i=0; i<r; i++)
+            for(j=0; j<c; j++)
+                if(grid[i][j]=='@')
+                    sr = i , sc = j, i = j = c+r;
+ 
+        int ans =  bfs(sr, sc)+1;
+        pf("Case %d: %d\n", ++kase, ans);
+    }
+    return 0;
+}
