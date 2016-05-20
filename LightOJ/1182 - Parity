@@ -1,0 +1,35 @@
+#include<iostream>
+#include<cstdio>
+#include<cmath>
+#include<cstring>
+#include<algorithm>
+#include<vector>
+#include<map>
+using namespace std;
+#define pf printf
+#define sf scanf
+#define loop(i, n) for(i=0; i<(n); i++)
+#define MAX  10005
+typedef long long ll;
+
+int main()
+{
+    ll num, rem, sum, test, i;
+    cin >> test;
+    for(i=1; i<=test ; i++)
+    {
+        cin>>num;
+        sum=0;
+        while(num>0)
+        {
+            rem = num%2;
+            sum = sum + rem;
+            num = num/2;
+        }
+        if(sum %2 == 0)
+            cout << "Case " << i << ": even" << endl;
+        else
+            cout << "Case " << i << ": odd" << endl;
+    }
+    return 0;
+}
