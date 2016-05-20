@@ -1,0 +1,16 @@
+#include<stdio.h>
+#include<math.h>
+int main()
+{
+    long long test, t;
+    double AB, AC, BC, AD, ratio, ratio2;
+    scanf("%lld", &test);
+    for(t=1; t<=test; t++)
+    {
+        scanf("%lf%lf%lf%lf", &AB, &AC, &BC, &ratio);
+        ratio2 =ratio/(ratio+1);
+        AD = AB*sqrt(ratio2);
+        printf ("Case %lld: %lf\n",  t, AD);
+    }
+    return 0;
+}
